@@ -40,7 +40,7 @@ function Header() {
 
             <nav class="navbar navbar-expand-lg navbar-light shadow">
                 <div class="container d-flex justify-content-between align-items-center">
-                    <Link class="navbar-brand text-success logo h1 align-self-center" to="/">
+                    <Link class="navbar-brand text-success logo h1 align-self-center" to="/Product">
                         Jassa
                     </Link>
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@ function Header() {
                                     <Link class="nav-link" to='/'>Home</Link>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
+                                    <Link class="nav-link" to='/about'>About</Link>
                                 </li>
                                 <li class="nav-item">
                                     <Link class="nav-link" to={'/listing'}>Shop</Link>

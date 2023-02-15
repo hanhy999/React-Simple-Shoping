@@ -14,7 +14,13 @@ import ProductListing from './CRUD/ProductListing';
 import ProductCreate from './CRUD/ProductCreate';
 import ProductDetail from './CRUD/ProductDetail';
 import ProductEdit from './CRUD/ProductEdit';
+import About from './component/About';
+import ResetPassword from './admin/ResetPassword';
+import ForgotPassword from './admin/ForgotPassword';
+import Product from './Category/Products'
 
+// import TopMenu from "./Category/TopMenu";
+// import { CartProvider } from "./Category/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,15 +32,20 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
+        <Route path='/resetpassword:id' element={<ResetPassword />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/listing' element={<ProductListing />}></Route>
         <Route path='/listing/create' element={<ProductCreate />}></Route>
         <Route path='/listing/detail/:productid' element={<ProductDetail />}></Route>
         <Route path='/listing/edit/:productid' element={<ProductEdit />}></Route>
+        <Route path='/about' element={<About/>}></Route>
+        <Route path='/product' element={<Product/>}></Route>
       </Routes>
 
     </BrowserRouter>
   </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
