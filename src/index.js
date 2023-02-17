@@ -17,7 +17,7 @@ import ProductEdit from './CRUD/ProductEdit';
 import About from './component/About';
 import ResetPassword from './admin/ResetPassword';
 import ForgotPassword from './admin/ForgotPassword';
-import Product from './Category/Products'
+import Product from './Category/ProductList'
 
 // import TopMenu from "./Category/TopMenu";
 // import { CartProvider } from "./Category/Cart";

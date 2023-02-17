@@ -42,38 +42,7 @@
     }
   ],
   "updatePassword": [],
-  "forgotpassword": [
-    {
-      "iduser": "",
-      "email": "hanhy222000@gmail.com",
-      "id": 1
-    },
-    {
-      "iduser": "",
-      "email": "hanhy222000@gmail.com",
-      "id": 2
-    },
-    {
-      "iduser": "",
-      "email": "h",
-      "id": 3
-    },
-    {
-      "iduser": "",
-      "email": "h",
-      "id": 4
-    },
-    {
-      "iduser": "",
-      "email": "hanhy222000@gmail.com",
-      "id": 5
-    },
-    {
-      "iduser": "",
-      "email": "hanhy222000@gmail.com",
-      "id": 6
-    }
-  ],
+  "forgotpassword": [],
   "Authenticate": [],
   "product": [
     {
@@ -83,7 +52,7 @@
       "description": "s",
       "brand": "Yor",
       "price": "23",
-      "size": "9",
+      "size": "29",
       "quantity": "2"
     },
     {

@@ -39,21 +39,14 @@ const ProductListing = () => {
         return 0;
     });
 
-    // filteredData.sort((a, b) => {
-    //     return a.price - b.price;
-    // });
+    filteredData.sort((a, b) => {
+        return a.price - b.price;
+    });
 
     //phân trang
     const [page, setPage] = useState(1);
     const PER_PAGE = 10;
-    // const count = Math.ceil(filteredData.length / PER_PAGE);
     const paginatedData = usePagination(filteredData, PER_PAGE);
-    // const handleChange = (e, p) => {
-    //     setPage(p);
-    //     paginatedData.jump(p);
-    // };
-    // console.log(filteredData);
-    // const paginatedData = usePagination(filteredData, PER_PAGE);
 
     useEffect(() => {
         fetch("http://localhost:8000/product").then((res) => {
@@ -70,7 +63,7 @@ const ProductListing = () => {
                 <div className="card-title" style={{ margin: "8px" }}> 
                     <h2>Product Listing</h2>
                 </div>
-                <div className="card-body">
+                <div className="card-body" >
                     <div className="divbtn">
                         <input type="text" placeholder="Search by product name" value={searchTerm } style={{ marginBottom: "8px" }}
                             onChange={e => setSearchTerm(e.target.value)} />
@@ -82,17 +75,15 @@ const ProductListing = () => {
                         id="demo-simple-select"
                         // value={valueSort}
                         label="Sort"
-                       
+                        style={{marginBottom : "8px"}}
                     >
                         <MenuItem value={filteredData.name}>Name</MenuItem>
                         <MenuItem value={'id'}>Id</MenuItem>
                         <MenuItem value={'description'}>Descriptions</MenuItem>
-                        <MenuItem value={'createdAt'}>CreatedAt</MenuItem>
-
                     </Select>
                 </FormControl>
                 <br></br>
-                        <Link to="create" className="btn btn-success" style={{ marginBottom: "8px" }}>Add New (+)</Link>
+                        <Link to="create" className="btn btn-success" style={{ marginBottom: "8px" }} >Add New (+)</Link>
                     </div>
                     <table className="table table-bordered">
                         <thead className="bg-dark text-white">
