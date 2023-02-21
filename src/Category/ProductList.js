@@ -1,45 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ProductItem from './ProductItem';
+import { toast } from 'react-toastify';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Product 1',
-      image: 'https://via.placeholder.com/150',
-      description: 'Description of product 1',
-      brand: 'Brand 1',
-      price: 10.99,
-      size: 'Small',
-      quantity: 5,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      image: 'https://via.placeholder.com/150',
-      description: 'Description of product 2',
-      brand: 'Brand 2',
-      price: 19.99,
-      size: 'Medium',
-      quantity: 10,
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      image: 'https://via.placeholder.com/150',
-      description: 'Description of product 3',
-      brand: 'Brand 3',
-      price: 29.99,
-      size: 'Large',
-      quantity: 15,
-    },
-  ]);
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/product')
+      .then(response => setProducts(response.data))
+      .catch(error => console.log(error));
+  }, []);
+
+  const addToCart = (product) => {
+    // kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    const existItem = cartItems.find((item) => item.id === product.id);
+    if (existItem) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id ? { ...existItem, quantity: existItem.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+    toast.success('Đã thêm sản phẩm vào giỏ hàng', { autoClose: 1500 });
+  };
 
   return (
-    <div>
-      {products.map((product, index) => (
-        <ProductItem key={index} product={product} />
-      ))}
+    <div className="container">
+      <div className="row">
+        {products.map(product => (
+          <div className="col-lg-4 mb-3" key={product.id}>
+            <ProductItem product={product} addToCart={addToCart} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

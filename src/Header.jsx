@@ -2,17 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
+
 function Header() {
     const name = sessionStorage.getItem('username')
-
     const [showName, setShowName] = useState(name);
-
+    const [cartItems, setCartItems] = useState([]);
 
     const logout = () => {
         sessionStorage.removeItem('username')
         setShowName('')
         toast.success('ĐĂNG XUẤT THÀNH CÔNG', { autoClose: 1500 })
     }
+
+    const addToCart = (product) => {
+        // kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+        const existItem = cartItems.find((item) => item.id === product.id);
+        if (existItem) {
+            setCartItems(
+                cartItems.map((item) =>
+                    item.id === product.id ? { ...existItem, quantity: existItem.quantity + 1 } : item
+                )
+            );
+        } else {
+            setCartItems([...cartItems, { ...product, quantity: 1 }]);
+        }
+        toast.success('Đã thêm sản phẩm vào giỏ hàng', { autoClose: 1500 });
+    };
 
     // useEffect(() => {
 
@@ -75,17 +90,16 @@ function Header() {
                             <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                                 <i class="fa fa-fw fa-search text-dark mr-2"></i>
                             </a>
-                            <a class="nav-icon position-relative text-decoration-none" href="#">
+                            <Link class="nav-icon position-relative text-decoration-none" to={'/addToCart'}>
                                 <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                                 <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
-                            </a>
+                            </Link>
                             {
                                 name ? <button onClick={logout}>Logout</button> :
                                     <Link class="nav-icon position-relative text-decoration-none" to={'/login'}>
                                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                                         {/* <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span> */}
                                     </Link>
-
                             }
                         </div>
                     </div>
