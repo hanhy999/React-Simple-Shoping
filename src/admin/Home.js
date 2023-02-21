@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 const Home = () => {
     const usenavigate = useNavigate();
     const [customerlist, listupdate] = useState(null);
-    const[displayusername,displayusernameupdate]=useState('');
+    const [displayusername, displayusernameupdate] = useState('');
     useEffect(() => {
         let username = sessionStorage.getItem('username');
         if (username === '' || username === null) {
             usenavigate('/login');
-        }else{
+        } else {
             displayusernameupdate(username);
         }
 
@@ -32,7 +32,7 @@ const Home = () => {
         <div>
             <div className="header">
                 <Link to={'/'}>Home</Link>
-                <span style={{marginLeft:'80%'}}>Welcome <b>{displayusername}</b></span>
+                <span style={{ marginLeft: '80%' }}>Welcome <b>{displayusername}</b></span>
                 <Link style={{ float: 'right' }} to={'/login'}>Logout</Link>
             </div>
             <h1 className="text-center">Welcome to Main</h1>
@@ -49,10 +49,10 @@ const Home = () => {
                     {customerlist &&
                         customerlist.map(item => (
                             <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.email}</td>
-        <td>{item.creditLimit}</td>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                                <td>{item.creditLimit}</td>
                             </tr>
 
                         ))
